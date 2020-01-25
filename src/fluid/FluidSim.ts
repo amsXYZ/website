@@ -38,6 +38,10 @@ function mobileCheck() {
   return check;
 }
 
+function firefoxCheck() {
+  return navigator.vendor === "";
+}
+
 // App configuration options.
 const isMobile = mobileCheck();
 const configuration = {
@@ -69,7 +73,7 @@ const camera = new OrthographicCamera(0, 0, 0, 0, 0, 0);
 const dt = 1 / 60;
 
 // Check floating point texture support.
-let floatSimSupported = true;
+let floatSimSupported = !firefoxCheck();
 if (
   !(
     renderer.getContext().getExtension("OES_texture_half_float") &&
