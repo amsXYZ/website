@@ -12,24 +12,13 @@ import {
   Vector2,
   WebGLRenderer
 } from "three";
-// import { SlideQuote } from "./SlideQuote";
-import {
-  getMaxTitleLength,
-  getTextures,
-  // getMaxQuoteLength,
-  // getMaxAuthorNameLength,
-  // getMaxAuthorTitleLength,
-  SlidesData
-} from "./SlidesData";
+import { getMaxTitleLength, getTextures, SlidesData } from "./SlidesData";
 import { SlideTitle } from "./SlideTitle";
 
 const nSlides = SlidesData.length;
 let currentSlide = 0;
 let nextSlide = (currentSlide + 1) % nSlides;
 const maxTitleLength = getMaxTitleLength();
-// const maxQuoteLength = getMaxQuoteLength();
-// const maxAuthorNameLength = getMaxAuthorNameLength();
-// const maxAuthorTitleLength = getMaxAuthorTitleLength();
 const textures = getTextures();
 
 const configuration = {
@@ -39,7 +28,6 @@ const configuration = {
 // Html/Three.js initialization.
 const canvas = document.getElementById("project-canvas") as HTMLCanvasElement;
 const titleDiv = document.getElementById("project-title") as HTMLDivElement;
-// const quoteDiv = document.getElementById("project-quote") as HTMLDivElement;
 
 let isCanvasVisible = false;
 const intersectionObserver = new IntersectionObserver((entries, observer) => {
@@ -196,9 +184,6 @@ canvas.addEventListener("mouseup", (event: MouseEvent) => {
 
 let title = SlidesData[currentSlide].title;
 let link = SlidesData[currentSlide].link;
-// let quote = SlidesData[currentSlide].quote;
-// let authorName = SlidesData[currentSlide].authorName;
-// let authorTitle = SlidesData[currentSlide].authorTitle;
 
 export function animate() {
   requestAnimationFrame(animate);
@@ -232,46 +217,6 @@ export function animate() {
     title = String.fromCodePoint(...titleCPs);
     link = SlidesData[currentSlide].link;
 
-    /* const quoteCPs = [];
-    for (let i = 0; i < maxQuoteLength; ++i) {
-      const cpA = SlidesData[currentSlide].quote.codePointAt(i) | 0;
-      const cpB = SlidesData[nextSlide].quote.codePointAt(i) | 0;
-      let cp = Math.round((1.0 - progress) * cpA + progress * cpB);
-      if (progress !== 0 && (cpA === 32 || cpB === 32)) {
-        cp = 32;
-      }
-      quoteCPs.push(cp);
-    }
-    quote = String.fromCodePoint(...quoteCPs);
-
-    const authorNameCPs = [];
-    for (let i = 0; i < maxAuthorNameLength; ++i) {
-      const cpA = SlidesData[currentSlide].authorName.codePointAt(i) | 0;
-      const cpB = SlidesData[nextSlide].authorName.codePointAt(i) | 0;
-      let cp = Math.round((1.0 - progress) * cpA + progress * cpB);
-      if (progress !== 0 && (cpA === 32 || cpB === 32)) {
-        cp = 32;
-      }
-      authorNameCPs.push(cp);
-    }
-    authorName = String.fromCodePoint(...authorNameCPs);
-
-    const authorTitleCPs = [];
-    for (let i = 0; i < maxAuthorTitleLength; ++i) {
-      const cpA = SlidesData[currentSlide].authorTitle.codePointAt(i) | 0;
-      const cpB = SlidesData[nextSlide].authorTitle.codePointAt(i) | 0;
-      let cp = Math.round((1.0 - progress) * cpA + progress * cpB);
-      if (progress !== 0 && (cpA === 32 || cpB === 32)) {
-        cp = 32;
-      }
-      authorTitleCPs.push(cp);
-    }
-    authorTitle = String.fromCodePoint(...authorTitleCPs); */
-
     ReactDOM.render(<SlideTitle title={title} link={link} />, titleDiv);
-    /* ReactDOM.render(
-      <SlideQuote quote={quote} author={authorName} title={authorTitle} />,
-      quoteDiv
-    ); */
   }
 }

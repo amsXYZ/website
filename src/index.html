@@ -192,24 +192,22 @@
         line-height: 80px;
       }
 
-      /* .project-quote {
-        position: relative;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-image: -webkit-gradient(
-          linear,
-          left top,
-          left bottom,
-          color-stop(20%, #000),
-          to(transparent)
-        );
-        background-image: linear-gradient(180deg, #000 20%, transparent);
-        font-family: "Ubuntu Mono", sans-serif;
-        margin-block-start: 0em;
-        margin-block-end: 0em;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
-      } */
+      .cssda-div {
+        position: absolute;
+        padding-top: 88vh;
+        padding-right: 2vh;
+        width: 100vw;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: flex-end;
+        pointer-events: none;
+      }
+
+      .cssda-img {
+        width: 10vh;
+        height: 10vh;
+        opacity: 0.6;
+      }
 
       @media (max-width: 1400px) {
         .about-canvas {
@@ -276,10 +274,9 @@
           height: 80vh;
         }
 
-        /* .project-quote {
-          font-size: 14px;
-          line-height: 16px;
-        } */
+        .cssda {
+          display: none;
+        }
       }
 
       @media (max-width: 767px) and (orientation: landscape) {
@@ -339,11 +336,6 @@
           font-size: 36px;
           line-height: 40px;
         }
-
-        /* .project-quote {
-          font-size: 10px;
-          line-height: 12px;
-        } */
       }
     </style>
     <link
@@ -434,6 +426,11 @@
   <body>
     <div>
       <h2 id="tap-hint">Double Tap to Unlock</h2>
+      <div class="cssda-div">
+        <img class="cssda-img" src="./resources/best-innovation-black.png" />
+        <img class="cssda-img" src="./resources/best-ui-black.png" />
+        <img class="cssda-img" src="./resources/best-ux-black.png" />
+      </div>
       <canvas id="logo-canvas"></canvas>
       <div class="section-div">
         <h1 id="intro">#01.Intro</h1>
@@ -495,7 +492,6 @@
           <div class="project-div">
             <canvas id="project-canvas" class="project-canvas"></canvas>
             <div id="project-title"></div>
-            <!-- <blockquote id="project-quote" class="project-quote"></blockquote> -->
           </div>
         </div>
       </div>
