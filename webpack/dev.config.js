@@ -6,6 +6,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const commonConfig = require("./common.config");
 
+const projects = require("../src/projectsData.json");
+
 const config = merge(commonConfig, {
   mode: "development",
   module: {
@@ -29,11 +31,29 @@ const config = merge(commonConfig, {
         toType: "dir"
       }
     ]),
+    new CopyWebpackPlugin([
+      {
+        from: path.join(__dirname, "../src/404.html"),
+        to: "404.html"
+      }
+    ]),
     new HtmlWebpackPlugin({
-      title: "[DEV] - AMS",
-      template: "./src/index.html"
+      title: "[DEV] - AMS - Freelance Software Engineer",
+      filename: "index.html",
+      template: "./src/index.html",
+      chunks: ["main"]
     })
   ]
 });
+for (const project of projects.data) {
+  config.plugins.push(
+    new HtmlWebpackPlugin({
+      title: `[DEV] - AMS - ${project.title}`,
+      filename: `projects/${project.page}.html`,
+      template: "./src/project.html",
+      chunks: ["project"]
+    })
+  );
+}
 
 module.exports = config;

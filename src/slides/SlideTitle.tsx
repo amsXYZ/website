@@ -1,17 +1,23 @@
-import React from "react";
+import React, { CSSProperties } from "react";
+
+const divStyle: CSSProperties = {
+  display: "flex",
+  width: "100%",
+  height: "150px",
+  marginTop: "-150px",
+  alignItems: "flex-end"
+};
 
 export const SlideTitle: React.FunctionComponent<{
   title: string;
-  link: string;
+  page: string;
 }> = props => {
+  const href = `./projects/${props.page}.html`;
   return (
-    <a
-      rel="noopener"
-      href={props.link}
-      target="_blank"
-      className="project-link"
-    >
-      {props.title}
-    </a>
+    <div style={divStyle}>
+      <a rel="noopener" href={href} className="project-link">
+        {props.title}
+      </a>
+    </div>
   );
 };

@@ -19,15 +19,6 @@ const dotResolution = 64;
 
 // Html/Three.js initialization.
 const canvas = document.getElementById("headshot-canvas") as HTMLCanvasElement;
-
-let isCanvasVisible = false;
-const intersectionObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    isCanvasVisible = entry.isIntersecting;
-  });
-});
-intersectionObserver.observe(canvas);
-
 const renderer = new WebGLRenderer({ canvas });
 renderer.setSize(canvas.offsetWidth, canvas.offsetHeight, false);
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -142,8 +133,8 @@ const textureLoader = new TextureLoader().load(
 
 export function animate() {
   requestAnimationFrame(animate);
-  if (isCanvasVisible) {
-    const boundingClient = canvas.getBoundingClientRect();
+  const boundingClient = canvas.getBoundingClientRect();
+  if (boundingClient.top <= window.innerHeight && boundingClient.bottom > 0) {
     const fireAnimation =
       boundingClient.top + boundingClient.height * 0.5 <= window.innerHeight &&
       !fadeInAnimation.began;

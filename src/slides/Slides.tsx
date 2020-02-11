@@ -4,39 +4,69 @@ import ReactDOM from "react-dom";
 import {
   BufferAttribute,
   BufferGeometry,
+  LinearFilter,
   Mesh,
   OrthographicCamera,
   RawShaderMaterial,
   Scene,
+  Texture,
+  TextureLoader,
   Uniform,
   Vector2,
   WebGLRenderer
 } from "three";
-import { getMaxTitleLength, getTextures, SlidesData } from "./SlidesData";
 import { SlideTitle } from "./SlideTitle";
 
-const nSlides = SlidesData.length;
+interface IProjectData {
+  title: string;
+  company: string;
+  start: string;
+  end: string;
+  technologies: string[];
+  page: string;
+  link: string;
+  sourceLink: string | undefined;
+  description: string;
+  slideshowImage: string;
+  headingImage: string;
+  headingCenterX: number;
+  headingCenterY: number;
+}
+// tslint:disable-next-line:no-var-requires
+const projectsData: IProjectData[] = require("../projectsData.json").data;
+function getMaxTitleLength(): number {
+  let max = -Infinity;
+  for (const project of projectsData) {
+    max = Math.max(max, project.title.length);
+  }
+  return max;
+}
+function getSlideshowTextures(
+  callbacK: (index: number, texture: Texture) => void
+): Texture[] {
+  const result = [];
+  for (let i = 0; i < projectsData.length; ++i) {
+    result.push(Texture.DEFAULT_IMAGE);
+    const textureLoader = new TextureLoader().load(
+      projectsData[i].slideshowImage,
+      texture => {
+        texture.minFilter = LinearFilter;
+        result[i] = texture;
+        callbacK(i, texture);
+      }
+    );
+  }
+  return result;
+}
+
+const nSlides = projectsData.length;
 let currentSlide = 0;
 let nextSlide = (currentSlide + 1) % nSlides;
 const maxTitleLength = getMaxTitleLength();
-const textures = getTextures();
-
-const configuration = {
-  Intensity: 0.2
-};
 
 // Html/Three.js initialization.
 const canvas = document.getElementById("project-canvas") as HTMLCanvasElement;
 const titleDiv = document.getElementById("project-title") as HTMLDivElement;
-
-let isCanvasVisible = false;
-const intersectionObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    isCanvasVisible = entry.isIntersecting;
-  });
-});
-intersectionObserver.observe(canvas);
-
 const renderer = new WebGLRenderer({ canvas });
 renderer.setSize(canvas.offsetWidth, canvas.offsetHeight, false);
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -58,13 +88,13 @@ geometry.setAttribute(
 );
 const material = new RawShaderMaterial({
   uniforms: {
-    textureA: new Uniform(textures[currentSlide]),
-    textureB: new Uniform(textures[nextSlide]),
+    textureA: new Uniform(Texture.DEFAULT_IMAGE),
+    textureB: new Uniform(Texture.DEFAULT_IMAGE),
     textureScaleA: new Uniform(new Vector2(1.0, 1.0)),
     textureScaleB: new Uniform(new Vector2(1.0, 1.0)),
     opacity: new Uniform(0.0),
     progress: new Uniform(0.0),
-    intensity: new Uniform(configuration.Intensity)
+    intensity: new Uniform(0.2)
   },
   vertexShader: `
         attribute vec2 position;
@@ -139,21 +169,31 @@ const fadeInAnimation = anime({
   autoplay: false,
   targets: material.uniforms.opacity,
   value: [{ value: 1.0, duration: 5000 }],
-  easing: "easeOutExpo"
+  easing: "easeOutExpo",
+  complete: () => {
+    if (!animation.began) {
+      animation.play();
+    }
+  }
+});
+
+const textures = getSlideshowTextures((idx: number, texture: Texture) => {
+  if (idx === currentSlide) {
+    material.uniforms.textureA.value = texture;
+  } else if (idx === nextSlide) {
+    material.uniforms.textureB.value = texture;
+  }
 });
 
 let animationTimeout: NodeJS.Timeout;
 const animation = anime({
-  autoplay: true,
+  autoplay: false,
   targets: material.uniforms.progress,
   value: [{ value: 1.0, duration: 500 }],
   easing: "linear",
   begin: () => {
     if (animationTimeout) {
       clearTimeout(animationTimeout);
-    }
-    if (!fadeInAnimation.began) {
-      fadeInAnimation.play();
     }
   },
   complete: () => {
@@ -182,12 +222,17 @@ canvas.addEventListener("mouseup", (event: MouseEvent) => {
   }
 });
 
-let title = SlidesData[currentSlide].title;
-let link = SlidesData[currentSlide].link;
+let title = projectsData[currentSlide].title;
+let page = projectsData[currentSlide].page;
 
 export function animate() {
   requestAnimationFrame(animate);
-  if (isCanvasVisible) {
+  const boundingClient = canvas.getBoundingClientRect();
+  if (boundingClient.top <= window.innerHeight && boundingClient.bottom > 0) {
+    if (!fadeInAnimation.completed) {
+      fadeInAnimation.play();
+    }
+
     if (material.uniforms.textureA.value !== undefined) {
       material.uniforms.textureScaleA.value.set(
         material.uniforms.textureA.value.image.width / canvas.offsetWidth,
@@ -206,8 +251,8 @@ export function animate() {
 
     const titleCPs = [];
     for (let i = 0; i < maxTitleLength; ++i) {
-      const cpA = SlidesData[currentSlide].title.codePointAt(i) || 0;
-      const cpB = SlidesData[nextSlide].title.codePointAt(i) || 0;
+      const cpA = projectsData[currentSlide].title.codePointAt(i) || 0;
+      const cpB = projectsData[nextSlide].title.codePointAt(i) || 0;
       let cp = Math.round((1.0 - progress) * cpA + progress * cpB);
       if (progress !== 0 && (cpA === 32 || cpB === 32)) {
         cp = 32;
@@ -215,8 +260,10 @@ export function animate() {
       titleCPs.push(cp);
     }
     title = String.fromCodePoint(...titleCPs);
-    link = SlidesData[currentSlide].link;
+    page = projectsData[currentSlide].page;
 
-    ReactDOM.render(<SlideTitle title={title} link={link} />, titleDiv);
+    ReactDOM.render(<SlideTitle title={title} page={page} />, titleDiv);
+  } else {
+    fadeInAnimation.pause();
   }
 }

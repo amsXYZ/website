@@ -3,6 +3,10 @@ const path = require("path");
 module.exports = {
   target: "web",
   mode: "production",
+  entry: {
+    main: "./src/index.ts",
+    project: "./src/project.tsx"
+  },
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "../dist")

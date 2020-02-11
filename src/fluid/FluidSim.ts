@@ -53,18 +53,6 @@ const configuration = {
 
 // Html/Three.js initialization.
 const canvas = document.getElementById("logo-canvas") as HTMLCanvasElement;
-
-let isCanvasVisible = false;
-const intersectionObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    isCanvasVisible = entry.isIntersecting;
-    isCanvasVisible && !logoAnimation.completed
-      ? logoAnimation.play()
-      : logoAnimation.pause();
-  });
-});
-intersectionObserver.observe(canvas);
-
 const renderer = new WebGLRenderer({ canvas });
 renderer.autoClear = false;
 renderer.setSize(document.documentElement.clientWidth, window.innerHeight);
@@ -314,6 +302,11 @@ canvas.addEventListener("touchcancel", (event: TouchEvent) => {
 function render() {
   const boundingClient = canvas.getBoundingClientRect();
   if (boundingClient.top > -window.innerHeight) {
+    // Play logo animation at the beginning.
+    if (!logoAnimation.completed) {
+      logoAnimation.play();
+    }
+
     // Advect the velocity vector field.
     velocityAdvectionPass.update({ timeDelta: dt });
     v = velocityRT.set(renderer);
@@ -393,6 +386,8 @@ function render() {
     renderer.setRenderTarget(null);
     gridPass.update({ vectorField: v });
     renderer.render(gridPass.scene, camera);
+  } else {
+    logoAnimation.pause();
   }
 }
 export function animate() {

@@ -1,0 +1,92 @@
+{
+  "data": [
+    {
+      "title": "Digital Dreams Internship",
+      "company": "Digital Dreams",
+      "start": "09/2016",
+      "end": "01/2017",
+      "technologies": ["Unity3D", "PlayStation VR", "C#", "HLSL"],
+      "page": "digital-dreams",
+      "link": "https://www.digitaldreamsgames.com",
+      "sourceLink": "https://github.com/amsXYZ/RaymarchingExperiments",
+      "description": "As an end to my university studies, I had the pleasure to join the folks at <strong>Digital Dreams</strong> for a 5-month internship.<br/><br/>During the length of the internship, I had the opportunity to support the team on the creation of technical demos for their upcoming project (in pre-production stages at the time). Some of these demos involved <strong>optimization of multiple camera setups</strong> (with custom culling and instancing solutions), experimentation with <strong>PSVR</strong> hardware (for which we created an endless train-ride simulator) and, in particular, <strong>ray marching</strong>, in which we experimented with infinite terrain generation and real-time boolean operations on terrain meshes.<br/><br/>I loved my time with the team, who I still consider to be great friends years after my internship. They did not only taught me many lessons which made me grow as a developer but also gave me a great experience which made me grow as a person.",
+      "slideshowImage": "../resources/slide-digitaldreams.png",
+      "headingImage": "../resources/heading-digitaldreams.jpg",
+      "headingCenterX": 0.48,
+      "headingCenterY": 0.8
+    },
+    {
+      "title": "StarVR",
+      "company": "Confetti Inc.",
+      "start": "03/2017",
+      "end": "06/2017",
+      "technologies": ["NVIDIA VRWorks", "Unreal Engine 4", "DirectX11", "C++"],
+      "page": "starvr",
+      "link": "https://www.starvr.com",
+      "description": "After having collaborated with the guys at <strong>Confetti Inc.</strong> for a couple of weeks on the development of their internal tools, I had the chance to jump into one of their client projects: <strong>StarVR</strong>.<br/><br/>Confetti had a small team of developers supporting <strong>Starbreeze Studios</strong> in the development of the SDK and many other calibration and development tools. Inside this project, I focus on integrating <strong>NVIDIA VRWorks Single Pass Stereo </strong> (API to project geometries to both left and right eye with a single draw call), <strong>Multi-Res Shading</strong> and <strong>Lens-Matched Shading</strong> (APIs to render different parts of an image with a pixel-density that closely matches the lens-corrected image), as well as adding support for the StarVR HMD on a custom build of <strong>Unreal Engine 4</strong>.<br/><br/>An overall really interesting project in which I had the opportunity to work for the first time with a big client, and understand all the nuances that come with a relationship like that (sprint reviews, deadlines, confidentiality agreements, etc.).",
+      "slideshowImage": "../resources/slide-starvr.png",
+      "headingImage": "../resources/heading-starvr.jpg",
+      "headingCenterX": 0.5,
+      "headingCenterY": 0.45
+    },
+    {
+      "title": "Amazon Sumerian",
+      "company": "Confetti Inc.",
+      "start": "10/2017",
+      "end": "11/2017",
+      "technologies": ["WebGL", "WebGL2", "GLSL", "Javascript"],
+      "page": "amazon-sumerian",
+      "link": "https://aws.amazon.com/sumerian/",
+      "description": "One of the smallest but coolest projects I had the opportunity to work on during the time I was working alongside the guys at <strong>Confetti Inc</strong>. I was part of a small team commissioned to improve the rendering capabilities of <strong>Amazon</strong>'s WebGL/WebGL2 rendering engine just before the public announcement of their web-based 3D/AR/VR authoring-tool: <strong>Amazon Sumerian</strong>.<br/><br/>Specifically, my role inside the team was focused around the implementation of <strong>WebGL2 GPU occlusion-queries</strong> (alongside the implementation of scene acceleration structures to prevent the draw calls' CPU cost negate the GPU performance gains), as well as the implementation of a <strong>Cook-Torrance PBR</strong> material model (plus reflection probes support). My favorite part of the project without a doubt, this presented quite a fair challenge due to the limited time constraints, quality expectations and performance requirements, but I managed to come up with a solution that the folks at Amazon were really happy with just in time! 🤘<br/><br/>As previously stated, one of the projects I've enjoyed the most. It did not only allow me to deep-dive into the world of <strong>PBR rendering</strong> but also brought to my attention how powerful the web-platform had become since the last time I worked on it (which fueled my interest in future projects on the web).",
+      "slideshowImage": "../resources/slide-sumerian.png",
+      "headingImage": "../resources/heading-sumerian.jpg",
+      "headingCenterX": 0.52,
+      "headingCenterY": 0.55
+    },
+    {
+      "title": "The Forge",
+      "company": "Confetti Inc.",
+      "start": "12/2017",
+      "end": "02/2018",
+      "technologies": [
+        "Metal",
+        "MetalKit",
+        "AppKit",
+        "UIKit",
+        "Objective-C",
+        "C++"
+      ],
+      "page": "the-forge",
+      "link": "https://theforge.dev",
+      "sourceLink": "https://github.com/ConfettiFX/The-Forge",
+      "slideshowImage": "../resources/slide-theforge.png",
+      "description": "As the last project I did for the guys at <strong>Confetti Inc.</strong>, I had the opportunity to work on Confetti's rendering framework: <strong>The Forge</strong>. The Forge is a <strong>rendering framework</strong> aimed at developers who want to create high-fidelity, high-performance graphics applications through a set platform-agnostic APIs that unify the modern low-level rendering APIs (<strong>DirectX12</strong>, <strong>Vulkan</strong> and <strong>Metal</strong>).<br/><br/>At the time I joined the project, <strong>Apple's Metal</strong> support had been left aside in favor of DirectX12 and Vulkan support, so I was tasked with reworking the whole <strong>backend</strong> and bring it to parity with the other versions. This involved many different interesting topics like <strong>macOS/iOS compatibility</strong>, implementing a VulkanMemoryAllocator-like memory allocator implementation for Metal as well as porting all the framework's demo to support <strong>MSL</strong> (<strong>Metal Shading Language</strong>), as well as metal-only specific features (i.e. using <strong>Argument Buffers</strong> to support <strong>Bindless Resources</strong>).<br/><br/>Really fun project in which I fell in love with the elegance of the <strong>Metal API</strong> (which I have to revisit in future projects soon!) and had the chance to strengthen my knowledge of <strong>modern graphics API development</strong>.",
+      "headingImage": "../resources/heading-theforge.jpg",
+      "headingCenterX": 0.5,
+      "headingCenterY": 0.25
+    },
+    {
+      "title": "HARP.GL",
+      "company": "HERE",
+      "start": "04/2018",
+      "end": "11/2019",
+      "technologies": [
+        "WebGL",
+        "Three.js",
+        "GLSL",
+        "Typescript",
+        "Node",
+        "Webpack",
+        "React"
+      ],
+      "page": "harp",
+      "link": "https://www.harp.gl",
+      "sourceLink": "https://github.com/heremaps/harp.gl",
+      "description": "In 2019 I had the opportunity to work with the fantastic web-rendering team at <strong>HERE Maps</strong> to create <strong>HARP.GL</strong>, their new 3D web map rendering engine. Being part of this project for around 20 months meant that I ended up touching many different parts of the project instead of solely focusing on rendering (although it was still my biggest focus), which I very much enjoyed as it meant I had the opportunity to work with a very modern tech stack (<strong>Typescript, Node, Webpack, React, Three.js, WebWorkers API, etc.</strong>).<br/><br/>On the rendering side of things, I got to work on many interesting and varied challenges like <strong>antialiased pixel-wide roads</strong>, <strong>MVT/GeoJSON geometry generation algorithms</strong>, <strong>theme-based styling</strong>, and many other problems related to map rendering.<br/><br/>But by far, the feature that I spent working more on was for sure <strong>@here/harp-text-canvas</strong>, a custom <strong>MSDF text rendering engine</strong> for Three.js with support Unicode Bidirectional text, rich text, complex layouts (multiline as well as path-following text), render to texture, and much more. <strong>Text rendering</strong> was a topic that I always wanted to delve into but never had time, and to be able to explore the challenges of modern text and typesetting engines on a professional project was a brilliant experience.<br/><br/>I think by far this is the project that has made me grow the most as a software engineer, and that wouldn't be true if it wasn't because of the fantastic colleagues I had the opportunity to work with. Hopefully not the last time that I get to work with the guys at <strong>HERE Berlin</strong> 😉",
+      "slideshowImage": "../resources/slide-harp.png",
+      "headingImage": "../resources/heading-harp.jpg",
+      "headingCenterX": 0.5,
+      "headingCenterY": 0.7
+    }
+  ]
+}

@@ -54,7 +54,9 @@ export function animate() {
   for (let i = 0; i < headings.length; ++i) {
     const boundingClient = headings[i].getBoundingClientRect();
     const fireAnimation =
-      boundingClient.top <= window.innerHeight && !sectionsAnimations[i].began;
+      boundingClient.top <= window.innerHeight &&
+      boundingClient.bottom > 0 &&
+      !sectionsAnimations[i].began;
     if (fireAnimation) {
       sectionsAnimations[i].play();
     }

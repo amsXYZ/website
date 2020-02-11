@@ -20,7 +20,7 @@
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
-    <title>AMS - Freelance Software Engineer</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
     <meta
       name="description"
       content="Andrés Valencia Téllez's professional portfolio.
@@ -49,7 +49,7 @@
 
       .section-line {
         position: absolute;
-        width: 1px;
+        width: 2px;
         height: 100px;
         background-color: hsla(0, 0%, 100%, 0);
       }
@@ -105,8 +105,6 @@
       }
 
       h2 {
-        position: absolute;
-        width: 100vw;
         text-align: center;
         font-weight: 100;
         opacity: 0;
@@ -151,7 +149,7 @@
 
       .project-link {
         position: relative;
-        margin-top: -88px;
+        width: 100%;
         font-weight: 700;
         text-shadow: 3px 3px 0px #000;
         text-align: center;
@@ -192,11 +190,19 @@
         line-height: 80px;
       }
 
+      .hint-div {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+      }
+
       .cssda-div {
         position: absolute;
         padding-top: 88vh;
         padding-right: 2vh;
-        width: 100vw;
+        width: 100%;
         box-sizing: border-box;
         display: flex;
         justify-content: flex-end;
@@ -274,7 +280,7 @@
           height: 80vh;
         }
 
-        .cssda {
+        .cssda-div {
           display: none;
         }
       }
@@ -339,7 +345,7 @@
       }
     </style>
     <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:100,400,700|Ubuntu+Mono&display=swap"
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,400,700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -425,7 +431,9 @@
   </head>
   <body>
     <div>
-      <h2 id="tap-hint">Double Tap to Unlock</h2>
+      <div class="hint-div">
+        <h2 id="tap-hint">Double Tap to Unlock</h2>
+      </div>
       <div class="cssda-div">
         <img class="cssda-img" src="./resources/best-innovation-black.png" />
         <img class="cssda-img" src="./resources/best-ui-black.png" />
@@ -504,7 +512,7 @@
             <strong
               ><a
                 class="content-text contact-link"
-                href="mailto:andres@ams.xyz?subject=Project%20Inquiry&amp;body=Hi%20Andrés%20;)"
+                href="mailto:andres@ams.xyz?subject=Project%20Inquiry&amp;body=Hi%20Andrés,"
                 >AVAILABLE</a
               ></strong
             >
