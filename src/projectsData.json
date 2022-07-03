@@ -67,7 +67,7 @@
     },
     {
       "title": "HARP.GL",
-      "company": "HERE",
+      "company": "HERE Technologies",
       "start": "04/2018",
       "end": "11/2019",
       "technologies": [
@@ -87,6 +87,26 @@
       "headingImage": "../resources/heading-harp.jpg",
       "headingCenterX": 0.5,
       "headingCenterY": 0.7
+    },
+    {
+      "title": "SEED",
+      "company": "Klang Games GmbH",
+      "start": "04/2020",
+      "end": "-",
+      "technologies": [
+        "Unity",
+        "URP",
+        "Burst",
+        "C#",
+        "HLSL"
+      ],
+      "page": "seed",
+      "link": "https://www.seed-online.com/",
+      "description": "(TODO)<br/><br/>In 2019 I had the opportunity to work with the fantastic web-rendering team at <strong>HERE Maps</strong> to create <strong>HARP.GL</strong>, their new 3D web map rendering engine. Being part of this project for around 20 months meant that I ended up touching many different parts of the project instead of solely focusing on rendering (although it was still my biggest focus), which I very much enjoyed as it meant I had the opportunity to work with a very modern tech stack (<strong>Typescript, Node, Webpack, React, Three.js, WebWorkers API, etc.</strong>).<br/><br/>On the rendering side of things, I got to work on many interesting and varied challenges like <strong>antialiased pixel-wide roads</strong>, <strong>MVT/GeoJSON geometry generation algorithms</strong>, <strong>theme-based styling</strong>, and many other problems related to map rendering.<br/><br/>But by far, the feature that I spent working more on was for sure <strong>@here/harp-text-canvas</strong>, a custom <strong>MSDF text rendering engine</strong> for Three.js with support Unicode Bidirectional text, rich text, complex layouts (multiline as well as path-following text), render to texture, and much more. <strong>Text rendering</strong> was a topic that I always wanted to delve into but never had time, and to be able to explore the challenges of modern text and typesetting engines on a professional project was a brilliant experience.<br/><br/>I think by far this is the project that has made me grow the most as a software engineer, and that wouldn't be true if it wasn't because of the fantastic colleagues I had the opportunity to work with. Hopefully not the last time that I get to work with the guys at <strong>HERE Berlin</strong> 😉",
+      "slideshowImage": "../resources/slide-seed.png",
+      "headingImage": "../resources/heading-seed.png",
+      "headingCenterX": 0.5,
+      "headingCenterY": 0.5
     }
   ]
 }
